@@ -1,0 +1,16 @@
+[
+  {
+    "evento": "Cumpleaños",
+    "proveedor": "Proveedor A",
+    "fecha": "2000-03-19",
+    "email": "jhonsilva809@gmail.com",
+    "id": 1
+  },
+  {
+    "evento": "Carnavales",
+    "proveedor": "Proveedor B",
+    "fecha": "2025-02-15",
+    "email": "dayhelygraos@gmail.com",
+    "id": 2
+  }
+]

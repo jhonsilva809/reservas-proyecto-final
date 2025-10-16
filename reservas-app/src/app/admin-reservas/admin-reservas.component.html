@@ -1,0 +1,52 @@
+<div class="admin-container">
+  <h1 class="titulo">📋 Lista de Reservas Registradas</h1>
+
+  <button class="volver-btn" (click)="volver()">⬅️ Volver al menú</button>
+
+  <!-- 📊 Gráfico estadístico -->
+  <h2 class="subtitulo">📊 Estadísticas de Reservas por Evento</h2>
+  <canvas id="reservasChart" width="400" height="200"></canvas>
+
+  <!-- 📄 Tabla de reservas -->
+  <table class="tabla">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Cliente</th>
+        <th>Evento</th>
+        <th>Proveedor</th>
+        <th>Fecha</th>
+        <th>Correo</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let r of reservas">
+        <td>{{ r.id }}</td>
+        <td>{{ r.nombre_cliente }}</td>
+        <td>{{ r.evento }}</td>
+        <td>{{ r.proveedor }}</td>
+        <td>{{ r.fecha }}</td>
+        <td>{{ r.correo }}</td>
+        <td>
+          <button class="edit-btn" (click)="editarReserva(r)">✏️</button>
+          <button class="delete-btn" (click)="eliminarReserva(r.id)">🗑️</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- ✏️ Formulario de edición -->
+  <div *ngIf="reservaEditando" class="edit-form">
+    <h3>✏️ Editar Reserva (ID: {{ reservaEditando.id }})</h3>
+
+    <input [(ngModel)]="reservaEditando.nombre_cliente" placeholder="Nombre cliente" type="text">
+    <input [(ngModel)]="reservaEditando.evento" placeholder="Evento" type="text">
+    <input [(ngModel)]="reservaEditando.proveedor" placeholder="Proveedor" type="text">
+    <input [(ngModel)]="reservaEditando.fecha" placeholder="Fecha" type="date">
+    <input [(ngModel)]="reservaEditando.correo" placeholder="Correo" type="email">
+
+    <button class="save-btn" (click)="guardarCambios()">💾 Guardar</button>
+    <button class="cancel-btn" (click)="cancelarEdicion()">❌ Cancelar</button>
+  </div>
+</div>

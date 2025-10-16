@@ -1,0 +1,10 @@
+<div class="registro-container">
+  <h2>📝 Registro de Usuario</h2>
+
+  <input type="text" [(ngModel)]="nombre" placeholder="Nombre completo" />
+  <input type="email" [(ngModel)]="correo" placeholder="Correo electrónico" />
+  <input type="password" [(ngModel)]="password" placeholder="Contraseña" />
+
+  <button (click)="registrar()">✅ Registrar</button>
+  <button class="volver" (click)="volver()">⬅ Volver</button>
+</div>

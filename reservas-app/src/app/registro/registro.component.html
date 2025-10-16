@@ -1,0 +1,14 @@
+<div class="registro-container">
+  <div class="registro-card">
+    <h2>📝 Crear cuenta nueva</h2>
+
+    <input type="text" [(ngModel)]="nombre" placeholder="Nombre completo" />
+    <input type="email" [(ngModel)]="correo" placeholder="Correo electrónico" />
+    <input type="password" [(ngModel)]="password" placeholder="Contraseña" />
+
+    <button (click)="registrar()">Crear cuenta</button>
+    <button class="volver-btn" (click)="volver()">⬅ Volver</button>
+
+    <p *ngIf="mensaje" [class.exito]="exito" [class.error]="!exito">{{ mensaje }}</p>
+  </div>
+</div>

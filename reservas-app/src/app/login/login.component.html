@@ -1,0 +1,68 @@
+<div class="flex justify-center items-center h-screen bg-gradient-to-br from-blue-200 to-indigo-400">
+  <div class="bg-white shadow-2xl rounded-2xl p-8 w-96">
+    <h2 class="text-2xl font-bold text-center mb-6 text-gray-800">
+      {{ modoRegistro ? 'Crear cuenta nueva' : 'Iniciar sesión' }}
+    </h2>
+
+    <!-- Nombre solo visible al registrarse -->
+    <div *ngIf="modoRegistro">
+      <input
+        type="text"
+        [(ngModel)]="nombre"
+        placeholder="Nombre completo"
+        class="w-full mb-3 px-3 py-2 border rounded focus:ring-2 focus:ring-indigo-400 outline-none"
+      />
+    </div>
+
+    <input
+      type="email"
+      [(ngModel)]="email"
+      placeholder="Correo electrónico"
+      class="w-full mb-3 px-3 py-2 border rounded focus:ring-2 focus:ring-indigo-400 outline-none"
+    />
+
+    <input
+      type="password"
+      [(ngModel)]="password"
+      placeholder="Contraseña"
+      class="w-full mb-4 px-3 py-2 border rounded focus:ring-2 focus:ring-indigo-400 outline-none"
+    />
+
+    <!-- 🧍 Selección de rol -->
+    <div *ngIf="modoRegistro" class="mb-3">
+      <label class="block mb-1 text-sm font-medium text-gray-700">Rol:</label>
+      <select [(ngModel)]="rol" class="w-full border rounded px-3 py-2 focus:ring-2 focus:ring-indigo-400 outline-none">
+        <option value="usuario">Usuario</option>
+        <option value="admin">Administrador</option>
+      </select>
+    </div>
+
+    <!-- 🧩 Campo de código solo si es admin -->
+    <div *ngIf="modoRegistro && rol === 'admin'">
+      <input
+        type="text"
+        [(ngModel)]="codigoAdmin"
+        placeholder="Código de registro de administrador"
+        class="w-full mb-4 px-3 py-2 border rounded focus:ring-2 focus:ring-indigo-400 outline-none"
+      />
+    </div>
+
+    <button
+      (click)="modoRegistro ? registrar() : login()"
+      class="w-full bg-indigo-500 hover:bg-indigo-600 text-white py-2 rounded transition-all"
+    >
+      {{ modoRegistro ? 'Registrarme' : 'Entrar' }}
+    </button>
+
+    <p *ngIf="mensaje" class="text-red-500 text-sm text-center mt-3">
+      {{ mensaje }}
+    </p>
+
+    <p class="text-sm text-center mt-4 text-gray-600">
+      {{ modoRegistro ? '¿Ya tienes cuenta?' : '¿No tienes cuenta?' }}
+      <a (click)="toggleModo()" class="text-indigo-600 font-semibold cursor-pointer hover:underline">
+        {{ modoRegistro ? 'Inicia sesión aquí' : 'Regístrate aquí' }}
+      </a>
+    </p>
+  </div>
+</div>

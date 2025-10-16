@@ -1,0 +1,63 @@
+<div class="header">
+  Hola, <strong>{{ usuario?.nombre }}</strong>
+  <button class="logout-btn" (click)="cerrarSesion()">🚪 Cerrar sesión</button>
+</div>
+<div class="reserva-wrapper">
+  <div class="reserva-card">
+
+    <!-- Paso 1: Tipo de evento -->
+    <div *ngIf="currentStep === 1" class="step step-event">
+  <h2>🎉 Selecciona el tipo de evento</h2>
+
+  <div class="event-grid">
+    <div
+      class="event-card"
+      *ngFor="let event of eventTypes"
+      (click)="selectEvent(event)"
+      [class.selected]="selectedEventType === event.name"
+    >
+      <h3>{{ event.icon }} {{ event.name }}</h3>
+      <img [src]="event.image" [alt]="event.name" />
+    </div>
+  </div>
+</div>
+
+    <!-- Paso 2: Proveedor y detalles -->
+    <div *ngIf="currentStep === 2" class="step step-provider">
+      <h2>🤝 Selecciona un proveedor</h2>
+
+      <div class="provider-grid">
+  <div
+    class="provider-card"
+    *ngFor="let p of providers"
+    (click)="selectProvider(p.nombre)"
+    [class.selected]="selectedProvider === p.nombre"
+  >
+    <img [src]="p.imagen" [alt]="p.nombre" />
+    <h3>{{ p.nombre }}</h3>
+  </div>
+</div>
+
+
+      <div class="input-group">
+        <label>📅 Fecha:</label>
+        <input type="date" [(ngModel)]="selectedDate" [min]="minDate" />
+      </div>
+
+      <div class="input-group">
+        <label>📧 Correo electrónico:</label>
+        <input type="email" [(ngModel)]="email" placeholder="ejemplo@correo.com" />
+      </div>
+
+      <div class="btn-actions">
+        <button class="confirm-btn" (click)="confirm()">✅ Confirmar</button>
+        <button class="reset-btn" (click)="reset()">🔄 Reiniciar</button>
+      </div>
+
+      <div *ngIf="usuario?.rol === 'admin'" class="admin-btn-container">
+  <button class="admin-btn" (click)="irAAdmin()">📋 Lista de Reservas Registradas</button>
+</div>
+
+  </div>
+  
+</div>
